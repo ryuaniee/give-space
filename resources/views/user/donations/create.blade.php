@@ -25,20 +25,15 @@
 
             <div class="space-y-6">
                 <div>
-                    <label for="amount" class="block text-sm font-medium text-gray-900">
-                        Nominal Donasi
-                    </label>
-
+                    <label for="amount" class="block text-sm font-medium text-gray-900">Nominal Donasi</label>
                     <div class="relative mt-2">
                         <span
-                            class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-sm text-gray-500">
-                            Rp
-                        </span>
-
-                        <input type="text" id="amount" name="amount" value="{{ old('amount') }}" required
-                            inputmode="numeric" placeholder="100.000"
+                            class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-sm text-gray-500">Rp</span>
+                        <input type="number" id="amount" name="amount" value="{{ old('amount') }}" min="1000" required
+                            placeholder="100000"
                             class="block w-full rounded-lg border-0 bg-gray-50 py-2.5 pl-10 pr-3 text-sm text-gray-900 ring-1 ring-inset ring-gray-300 focus:bg-white focus:ring-2 focus:ring-indigo-600">
-                    </div> @error('amount')
+                    </div>
+                    @error('amount')
                         <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
@@ -137,20 +132,5 @@
 
         methods.forEach((method) => method.addEventListener('change', updatePaymentMethod));
         updatePaymentMethod();
-    </script>
-    <script>
-        const amountInput = document.getElementById('amount');
-
-        amountInput.addEventListener('input', function () {
-            let value = this.value.replace(/\D/g, '');
-
-            this.value = value
-                ? new Intl.NumberFormat('id-ID').format(value)
-                : '';
-        });
-
-        document.querySelector('form').addEventListener('submit', function () {
-            amountInput.value = amountInput.value.replace(/\./g, '');
-        });
     </script>
 @endpush
