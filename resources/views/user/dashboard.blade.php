@@ -25,7 +25,7 @@
             <div class="rounded-xl border border-gray-200 bg-white p-5">
                 <p class="text-sm text-gray-500">Donasi Terakhir</p>
                 @if($latestDonation)
-                    <p class="mt-2 text-lg font-semibold tracking-tight text-gray-900">Rp {{ number_format($latestDonation->amount, 0, ',', '.') }}</p>
+                    <p class="mt-2 text-2xl font-semibold tracking-tight text-gray-900">Rp {{ number_format($latestDonation->amount, 0, ',', '.') }}</p>
                     <p class="mt-1 truncate text-xs text-gray-400">{{ $latestDonation->campaign->title }}</p>
                 @else
                     <p class="mt-2 text-2xl font-semibold tracking-tight text-gray-900">-</p>
