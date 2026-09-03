@@ -47,8 +47,9 @@
 
                 <div>
                     <label for="target_amount" class="block text-sm font-medium text-gray-900">Target Donasi</label>
-                    <input type="number" id="target_amount" name="target_amount" value="{{ old('target_amount') }}" min="1"
-                        required placeholder="50000000"
+                    <input type="text" id="target_amount" name="target_amount"
+                        value="{{ old('target_amount') ? number_format(old('target_amount'), 0, ',', '.') : '' }}" required
+                        inputmode="numeric" placeholder="Contoh: 1.000.000.000"
                         class="mt-2 block w-full rounded-lg border-0 bg-gray-50 px-3 py-2.5 text-sm ring-1 ring-inset ring-gray-300 focus:bg-white focus:ring-2 focus:ring-indigo-600">
                     @error('target_amount')
                         <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
@@ -119,3 +120,23 @@
         </form>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        const targetAmount = document.getElementById('target_amount');
+
+        targetAmount.addEventListener('input', function () {
+            let value = this.value.replace(/\D/g, '');
+
+            if (value) {
+                this.value = new Intl.NumberFormat('id-ID').format(value);
+            } else {
+                this.value = '';
+            }
+        });
+
+        document.querySelector('form').addEventListener('submit', function () {
+            targetAmount.value = targetAmount.value.replace(/\./g, '');
+        });
+    </script>
+@endpush
