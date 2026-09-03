@@ -50,7 +50,6 @@
                             <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Nominal</th>
                             <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Metode</th>
                             <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Status</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
@@ -76,10 +75,6 @@
                                 <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500">{{ $transaction->payment_method === 'qris' ? 'QRIS' : 'Transfer Rekening' }}</td>
                                 <td class="whitespace-nowrap px-6 py-4">
                                     <span class="inline-flex rounded-full px-2.5 py-1 text-xs font-medium {{ $statusClass }}">{{ ucfirst($transaction->status) }}</span>
-                                </td>
-                                <td class="whitespace-nowrap px-6 py-4 text-right text-sm">
-                                    <a href="{{ route('admin.transactions.show', $transaction) }} }}"
-                                        class="font-medium text-indigo-600 hover:text-indigo-500">Lihat Detail</a>
                                 </td>
                             </tr>
                         @empty
